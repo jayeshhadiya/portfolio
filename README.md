@@ -70,13 +70,16 @@ npm run prerender   # static HTML for every page and blog post in dist/client/br
 
 ## Deploying
 
-The prerendered output is plain static files, so any static host works. With [Cloudflare Pages](https://pages.cloudflare.com/) (free, gives a `*.pages.dev` address until you add a custom domain):
+The prerendered output is plain static files, so any static host works.
 
-- **Build command:**
-  ```bash
-  cp src/environments/environment.ts.bak src/environments/environment.ts && cp src/environments/environment.development.ts.bak src/environments/environment.development.ts && npm run prerender
-  ```
-- **Output directory:** `dist/client/browser`
-- **Environment variable:** `NODE_VERSION` = `20`
+The environment files are git-ignored, so before every build `scripts/setup-env.mjs` creates any missing ones from the `.bak` templates, filling in these environment variables from your host:
 
-The build uses the committed `.bak` templates, so set `url` (and `production: true`) in `environment.ts.bak` to your live address before deploying.
+| Variable | Value |
+|---|---|
+| `SITE_URL` | Your live address, e.g. `https://jayeshhadiya.vercel.app` (on Vercel this defaults to the project's production domain) |
+| `WEB3FORMS_KEY` | Contact form key from [web3forms.com](https://web3forms.com) |
+| `UMAMI_WEBSITE_ID` | Optional analytics id |
+
+**Vercel:** import the repo; `vercel.json` already sets the build command (`npm run prerender`), the output directory (`dist/client/browser`) and the fallback for client-side routes. Add the variables above under Project → Settings → Environment Variables.
+
+**Cloudflare Pages:** build command `npm run prerender`, output directory `dist/client/browser`, and the same environment variables.
