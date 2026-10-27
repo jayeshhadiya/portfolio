@@ -1,0 +1,22 @@
+export const environment = {
+  production: false,
+  mainColor: '#3867d6',
+  // Your live site address, no trailing slash. Also used for robots.txt, sitemap.xml and rss.xml at build time.
+  url: 'https://example.com',
+  umamiWebsiteId: '',
+  // Free key from https://web3forms.com; leave empty to fall back to opening the visitor's email app.
+  web3formsKey: '',
+  traktTv: {
+    url: 'https://trakt.tv/',
+    apiURL: 'https://api.trakt.tv/',
+    version: 2,
+    clientId: '',
+    username: '',
+    token: ''
+  },
+  themoviedb: {
+    apiURL: 'https://api.themoviedb.org/3/',
+    token: '',
+    language: 'en'
+  }
+};

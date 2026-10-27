@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 1000 500">
+  <defs>
+    <!-- Transparent background: the page paints the theme colour behind this image. -->
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.3"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#ffffff"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="500" fill="url(#g)"/>
+  <g transform="translate(800 165)" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round">
+    <path d="M-95 0A95 95 0 0 1 80 -51" marker-end="url(#arrow)"/>
+    <path d="M95 0A95 95 0 0 1 -80 51" marker-end="url(#arrow)"/>
+  </g>
+  <g transform="translate(800 165)" font-family="Menlo, Consolas, monospace" font-size="26" fill="#ffffff" text-anchor="middle">
+    <text y="-8">restart</text>
+    <text y="26">#5</text>
+  </g>
+  <text x="70" y="150" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700" fill="#ffffff">How to Fix</text>
+  <text x="70" y="222" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700" fill="#ffffff">CrashLoopBackOff</text>
+  <rect x="70" y="320" width="640" height="110" rx="14" fill="#0f172a" fill-opacity="0.55"/>
+  <g font-family="Menlo, Consolas, monospace" font-size="26">
+    <text x="100" y="365" fill="#a5f3fc">NAME     STATUS            RESTARTS</text>
+    <text x="100" y="405" fill="#ffffff">api-7f9  <tspan fill="#fca5a5">CrashLoopBackOff</tspan>  5</text>
+  </g>
+</svg>

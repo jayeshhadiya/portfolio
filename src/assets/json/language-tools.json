@@ -1,0 +1,70 @@
+[
+ {
+  "name": "Docker",
+  "url": "https://www.docker.com/"
+ },
+ {
+  "name": "Kubernetes",
+  "url": "https://kubernetes.io/"
+ },
+ {
+  "name": "Helm",
+  "url": "https://helm.sh/"
+ },
+ {
+  "name": "Terraform",
+  "url": "https://www.terraform.io/"
+ },
+ {
+  "name": "Ansible",
+  "url": "https://www.ansible.com/"
+ },
+ {
+  "name": "AWS",
+  "url": "https://aws.amazon.com/"
+ },
+ {
+  "name": "Linux",
+  "url": "https://en.wikipedia.org/wiki/Linux"
+ },
+ {
+  "name": "Bash",
+  "url": "https://www.gnu.org/software/bash/"
+ },
+ {
+  "name": "Git",
+  "url": "https://git-scm.com/"
+ },
+ {
+  "name": "GitHub Actions",
+  "url": "https://github.com/features/actions"
+ },
+ {
+  "name": "Jenkins",
+  "url": "https://www.jenkins.io/"
+ },
+ {
+  "name": "Nginx",
+  "url": "https://nginx.org/"
+ },
+ {
+  "name": "Prometheus",
+  "url": "https://prometheus.io/"
+ },
+ {
+  "name": "Grafana",
+  "url": "https://grafana.com/"
+ },
+ {
+  "name": "C-sharp",
+  "url": "https://en.wikipedia.org/wiki/C_Sharp_(programming_language)"
+ },
+ {
+  "name": ".NET Core",
+  "url": "https://dotnet.microsoft.com/"
+ },
+ {
+  "name": "SQL Server",
+  "url": "https://www.microsoft.com/sql-server"
+ }
+]

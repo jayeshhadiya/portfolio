@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      # The real environment files are git-ignored; build with the committed templates.
+      - name: Create environment files
+        run: |
+          cp src/environments/environment.ts.bak src/environments/environment.ts
+          cp src/environments/environment.development.ts.bak src/environments/environment.development.ts
+      - run: npm run build
+      - run: npm run prerender

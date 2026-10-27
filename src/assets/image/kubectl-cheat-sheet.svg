@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 1000 500">
+  <defs>
+    <!-- Transparent background: the page paints the theme colour behind this image. -->
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="500" fill="url(#g)"/>
+  <g transform="translate(800 150)" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" stroke-opacity="0.9">
+    <polygon points="0,-110 86,-69 107,24 48,99 -48,99 -107,24 -86,-69" stroke-linejoin="round"/>
+    <circle r="32"/>
+    <path d="M0 -32V-80M30 -10L76 -25M19 26L47 65M-19 26L-47 65M-30 -10L-76 -25"/>
+  </g>
+  <rect x="70" y="300" width="560" height="110" rx="14" fill="#0f172a" fill-opacity="0.55"/>
+  <text x="100" y="368" font-family="Menlo, Consolas, monospace" font-size="34" fill="#a5f3fc">$ kubectl get pods -A</text>
+  <text x="70" y="170" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="700" fill="#ffffff">Kubernetes</text>
+  <text x="70" y="245" font-family="Arial, Helvetica, sans-serif" font-size="44" fill="#dbeafe">Command Cheat Sheet</text>
+</svg>

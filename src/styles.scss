@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  @apply bg-white dark:bg-gray-900
+}
+::-webkit-scrollbar {
+  @apply w-2
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-500 rounded-3xl
+}
+a{
+  @apply cursor-pointer
+}
+.medium-zoom-overlay{
+  @apply dark:bg-gray-900/85 bg-white/85 z-[2] #{!important}
+}
+
+.medium-zoom-image{
+  @apply z-10
+}
+
+// Blog post extras: heading anchors, code copy button and syntax colours.
+// Code blocks are dark in both themes, so one palette works for light and dark mode.
+.prose :is(h2, h3, h4)[id]{
+  scroll-margin-top: 6rem;
+}
+.prose .heading-anchor{
+  @apply ml-2 no-underline font-normal text-gray-400 opacity-0 transition-opacity;
+}
+.prose :is(h2, h3, h4):hover .heading-anchor,
+.prose .heading-anchor:focus{
+  @apply opacity-100
+}
+.code-block{
+  @apply relative;
+  .copy-code{
+    @apply absolute top-2 right-2 rounded-md bg-gray-600/80 px-2 py-1 text-xs font-medium text-gray-100 opacity-0 transition-opacity hover:bg-gray-500;
+  }
+  &:hover .copy-code,
+  .copy-code:focus{
+    @apply opacity-100
+  }
+}
+@media (hover: none){
+  .code-block .copy-code{ @apply opacity-100 }
+}
+.hljs-comment, .hljs-quote{ @apply text-gray-400 italic }
+.hljs-keyword, .hljs-selector-tag, .hljs-built_in, .hljs-meta{ @apply text-purple-300 }
+.hljs-string, .hljs-addition{ @apply text-green-300 }
+.hljs-number, .hljs-literal, .hljs-symbol{ @apply text-orange-300 }
+.hljs-attr, .hljs-attribute, .hljs-variable, .hljs-template-variable{ @apply text-sky-300 }
+.hljs-title, .hljs-section, .hljs-type{ @apply text-yellow-200 }
+.hljs-deletion{ @apply text-red-300 }
