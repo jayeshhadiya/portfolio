@@ -6,7 +6,7 @@ const profileData: ProfileSchema = {
   resumeLink: '',
   greetings: [
     'Hello, world',
-    'Namaste, duniya'
+    'Namaste'
   ],
   pronouns: 'He/Him',
   email: 'jayeshhadiya018@gmail.com'

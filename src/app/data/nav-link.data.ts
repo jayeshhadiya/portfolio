@@ -17,6 +17,10 @@ const navlinkData: NavLinkSchema[] = [
     path: '/blog',
   },
   {
+    name: 'Quotes',
+    path: '/quotes',
+  },
+  {
     name: 'Uses',
     path: '/uses',
   },

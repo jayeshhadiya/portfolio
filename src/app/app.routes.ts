@@ -21,6 +21,10 @@ export const routes: Routes = [
     loadChildren: () => import('@pages/blog/blog.routes').then(m => m.BlogRoutes)
   },
   {
+    path: 'quotes',
+    loadChildren: () => import('@pages/quotes/quotes.routes').then(m => m.QuotesRoutes)
+  },
+  {
     path: 'uses',
     loadChildren: () => import('@pages/use/use.routes').then(m => m.UseRoutes)
   },
