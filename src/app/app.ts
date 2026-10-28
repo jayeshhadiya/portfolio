@@ -30,6 +30,8 @@ export class App implements OnInit {
   constructor(){
     effect(() => {
       this.elementRef.nativeElement.style.setProperty(`--primary-color`, this.theme.getColor())
+      // The early color from index.html is no longer needed (and would override later changes).
+      this.document.getElementById('theme-color-preload')?.remove();
     })
   }
   ngOnInit(): void {

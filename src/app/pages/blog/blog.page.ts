@@ -5,13 +5,12 @@ import { DatePipe } from '@angular/common';
 import { MetaService } from '@core/services/meta.service';
 import profileData from '@data/profile.data';
 import { ImageSkeletonDirective } from '@core/directives/image-skeleton.directive';
-import { Loader } from '@shared/components/loader/loader';
 @Component({
   selector: 'blog-page',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  imports: [RouterLink, DatePipe, ImageSkeletonDirective, Loader],
+  imports: [RouterLink, DatePipe, ImageSkeletonDirective],
   template: `
   <div class="container px-8 mx-auto xl:px-5">
   <div class="mx-auto max-w-screen-md">
@@ -21,7 +20,6 @@ import { Loader } from '@shared/components/loader/loader';
     </h1>
   </div>
 </div>
-  @defer(on immediate) {
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-screen-lg mx-auto my-10 text-left ">
       @for (post of blogService.blogs(); track post.id) {
       <a class="max-w-sm mx-auto bg-white dark:bg-gray-900 rounded-lg" [routerLink]="['/blog/'+ post.slug+'']">
@@ -35,9 +33,6 @@ import { Loader } from '@shared/components/loader/loader';
       </a>
       }
     </div>
-  }@placeholder {
-    <loader/>
-  }
 `
 })
 export class BlogPage {

@@ -11,7 +11,6 @@ import { toSignal } from '@angular/core/rxjs-interop'
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { DatePipe, DOCUMENT } from '@angular/common';
 import { BlogService } from '../blog.service';
-import { PlatformCheckService } from '@core/services/platform-check.service';
 import { arrowLeft } from '@icon/regular.icon';
 import { MetaService } from '@core/services/meta.service';
 import { Subscription } from 'rxjs';
@@ -22,9 +21,9 @@ import { ZoomImageDirective } from '@shared/directives/zoom-image/zoom-image.dir
 import { BlogSchema } from './blog-detail.interface';
 import { ImageSkeletonDirective } from '@core/directives/image-skeleton.directive';
 import { Share } from '@shared/components/share/share';
+import { onScrollChange } from '@core/utils/scroll-change';
 @Component({
   selector: 'blog-detail-page',
-  host: { '(window:scroll)': 'updateProgress()' },
   template: `@if(data(); as data){
     <div class="fixed top-0 left-0 z-[3] h-1 bg-primary-500 transition-[width] duration-75" [style.width.%]="progress()"
       role="progressbar" aria-label="Reading progress" [attr.aria-valuenow]="progress()" aria-valuemin="0" aria-valuemax="100"></div>
@@ -96,7 +95,6 @@ export class BlogDetailPage{
   sub!: Subscription;
   document = inject(DOCUMENT);
   blogService = inject(BlogService);
-  platformCheck = inject(PlatformCheckService);
   metaService = inject(MetaService);
   router = inject(Router);
   paramMap = toSignal(inject(ActivatedRoute).paramMap);
@@ -105,6 +103,7 @@ export class BlogDetailPage{
   previousPost = computed(() => this.position() < 0 ? undefined : this.blogService.blogs()[this.position() + 1]);
   nextPost = computed(() => this.position() < 1 ? undefined : this.blogService.blogs()[this.position() - 1]);
   constructor() {
+    onScrollChange(() => this.readProgress(), progress => this.progress.set(progress));
     effect((onCleanup) => {
       this.sub = this.blogService.get(this.paramMap()?.get('slug')).subscribe({
         next: data => {
@@ -126,11 +125,10 @@ export class BlogDetailPage{
     return !!post.updatedAt && post.updatedAt.slice(0, 10) !== post.publishedAt?.slice(0, 10);
   }
 
-  updateProgress(): void {
-    if (!this.platformCheck.onBrowser) return;
+  readProgress(): number {
     const { scrollTop, scrollHeight, clientHeight } = this.document.documentElement;
     const scrollable = scrollHeight - clientHeight;
-    this.progress.set(scrollable > 0 ? Math.min(100, Math.round(scrollTop / scrollable * 100)) : 0);
+    return scrollable > 0 ? Math.min(100, Math.round(scrollTop / scrollable * 100)) : 0;
   }
 
   // With <base href="/"> a plain "#id" link would go to the home page, so scroll in place instead.
