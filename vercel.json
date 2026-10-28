@@ -3,7 +3,7 @@
   "framework": null,
   "buildCommand": "npm run prerender",
   "outputDirectory": "dist/client/browser",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.original.html" }
+  "redirects": [
+    { "source": "/project", "destination": "/experience" }
   ]
 }

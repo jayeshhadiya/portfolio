@@ -7,3 +7,4 @@
 /blog/how-to-fix-crashloopbackoff-in-kubernetes
 /blog/k9s-cheat-sheet
 /blog/kubernetes-command-cheat-sheet
+/404

@@ -1,5 +1,6 @@
 // Builds robots.txt, sitemap.xml and rss.xml (into src/generated/) and the
 // prerender routes list (routesFile.txt) from the site URL, nav links and blog posts.
+// /404 is prerendered too and copied to 404.html after the build (see package.json).
 // Runs automatically before `npm start`, `npm run build` and the SSR/prerender scripts.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -21,10 +22,13 @@ const posts = JSON.parse(read('src/assets/json/blogs.json')).data
 
 const escapeXml = (text) => text.replace(/[<>&'"]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', "'": '&apos;', '"': '&quot;' }[c]));
 const blogPaths = posts.map((post) => `/blog/${post.slug}`);
+// The blog index changes whenever a post is added or updated.
+const blogLastmod = posts.map((post) => post.updatedAt.slice(0, 10)).sort().at(-1);
+const lastmod = (path) => path === '/blog' && blogLastmod ? `<lastmod>${blogLastmod}</lastmod>` : '';
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${navPaths.map((path) => `  <url><loc>${siteUrl}${path}</loc></url>`).join('\n')}
+${navPaths.map((path) => `  <url><loc>${siteUrl}${path}</loc>${lastmod(path)}</url>`).join('\n')}
 ${posts.map((post) => `  <url><loc>${siteUrl}/blog/${post.slug}</loc><lastmod>${post.updatedAt.slice(0, 10)}</lastmod></url>`).join('\n')}
 </urlset>
 `;
@@ -58,6 +62,6 @@ mkdirSync(join(root, 'src/generated'), { recursive: true });
 writeFileSync(join(root, 'src/generated/sitemap.xml'), sitemap);
 writeFileSync(join(root, 'src/generated/rss.xml'), rss);
 writeFileSync(join(root, 'src/generated/robots.txt'), robots);
-writeFileSync(join(root, 'routesFile.txt'), [...navPaths, ...blogPaths].join('\n') + '\n');
+writeFileSync(join(root, 'routesFile.txt'), [...navPaths, ...blogPaths, '/404'].join('\n') + '\n');
 
 console.log(`SEO files generated for ${siteUrl} (${navPaths.length} pages, ${posts.length} posts)`);

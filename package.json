@@ -15,7 +15,8 @@
     "prebuild:ssr": "node scripts/setup-env.mjs && node scripts/generate-seo-files.mjs",
     "build:ssr": "ng build && ng run client:server",
     "preprerender": "node scripts/setup-env.mjs && node scripts/generate-seo-files.mjs",
-    "prerender": "ng run client:prerender"
+    "prerender": "ng run client:prerender",
+    "postprerender": "node -e \"require('fs').copyFileSync('dist/client/browser/404/index.html', 'dist/client/browser/404.html')\""
   },
   "private": true,
   "dependencies": {
