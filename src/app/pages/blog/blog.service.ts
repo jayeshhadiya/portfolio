@@ -60,6 +60,15 @@ export class BlogService {
       }
     }))
   }
+  // Posts whose title, summary or keywords contain every word of the query.
+  search(query: string): BlogSchema[] {
+    const words = query.toLowerCase().split(/\s+/).filter(Boolean);
+    if (!words.length) return [];
+    return this.blogs().filter(post => {
+      const text = `${post.title} ${post.summary} ${post.keywords ?? ''}`.toLowerCase();
+      return words.every(word => text.includes(word));
+    });
+  }
   getAll(): void {
     of(blogsJson as BlogResponse).pipe(map(res => {
       const blogs = res.data?.map((item: any) => {
@@ -71,6 +80,7 @@ export class BlogService {
         summary: item.attributes.summary,
         slug: item.attributes.slug,
         publishedAt: item.attributes.publishedAt,
+        keywords: item.attributes.seo?.keywords,
         readingTime: this.readingTime(item.attributes.content)
       }
     })

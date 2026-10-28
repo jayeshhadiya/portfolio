@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 1000 500">
+  <defs>
+    <!-- Transparent background: the page paints the theme colour behind this image. -->
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="500" fill="url(#g)"/>
+  <text x="70" y="150" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700" fill="#ffffff">Terraform State</text>
+  <text x="70" y="222" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700" fill="#ffffff">on AWS S3</text>
+  <!-- Padlock: state locking -->
+  <g transform="translate(800 170)" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round">
+    <path d="M-45 -10V-45A45 45 0 0 1 45 -45V-10"/>
+    <rect x="-75" y="-10" width="150" height="115" rx="16" fill="#0f172a" fill-opacity="0.55"/>
+    <circle cx="0" cy="40" r="12" fill="#ffffff" stroke="none"/>
+    <line x1="0" y1="45" x2="0" y2="75"/>
+  </g>
+  <rect x="70" y="320" width="640" height="110" rx="14" fill="#0f172a" fill-opacity="0.55"/>
+  <g font-family="Menlo, Consolas, monospace" font-size="26">
+    <text x="100" y="365" fill="#a5f3fc">backend "s3" {</text>
+    <text x="130" y="405" fill="#ffffff">use_lockfile = <tspan fill="#86efac">true</tspan></text>
+  </g>
+</svg>

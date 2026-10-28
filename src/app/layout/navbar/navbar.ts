@@ -13,14 +13,15 @@ import { Logo } from '@shared/components/logo/logo';
 import { DOCUMENT, NgClass } from '@angular/common';
 import navlinkData from '@data/nav-link.data'
 import { Icon } from '@shared/components/icon/icon';
-import { moon, sun } from '@icon/regular.icon';
+import { moon, search, sun } from '@icon/regular.icon';
 import { ThemeService } from '@core/services/theme.service';
 import { paintBucket } from '@icon/solid.icon';
 import { ToolbarColor } from '@shared/components/toolbar-color/toolbar-color'
+import { BlogSearch } from '@shared/components/blog-search/blog-search'
 
 @Component({
   selector: 'navbar',
-  imports: [RouterModule, Logo, NgClass, Icon, ToolbarColor],
+  imports: [RouterModule, Logo, NgClass, Icon, ToolbarColor, BlogSearch],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   standalone: true,
@@ -30,6 +31,10 @@ import { ToolbarColor } from '@shared/components/toolbar-color/toolbar-color'
   <div class="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto p-4 border-y border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700">
     <logo class="dark:text-white text-black"/>
     <div class="flex lg:order-2 lg:space-x-0">
+      <button (click)="searchOpen = !searchOpen; open = false" type="button" aria-label="Search blog" [attr.aria-expanded]="searchOpen"
+        class="mx-1 inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+        <icon [path]="searchIcon" [size]="18" iconClass="dark:fill-white fill-black"></icon>
+      </button>
       <button (click)="darkModeService.toggleDarkMode()" type="button" [attr.aria-label]="darkModeService.isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
         class="mx-1 inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
         <icon [path]="icon()" [size]="20" iconClass="dark:fill-white fill-black"></icon>
@@ -63,11 +68,17 @@ import { ToolbarColor } from '@shared/components/toolbar-color/toolbar-color'
       </ul>
     </div>
   </div>
-
+  @if (searchOpen) {
+    <div class="max-w-screen-lg mx-auto px-4 py-3 border-b border-gray-200 dark:border-gray-800">
+      <blog-search (closed)="searchOpen = false"/>
+    </div>
+  }
 </nav>`
 })
 export class Navbar {
   open: boolean = false;
+  searchOpen = false;
+  searchIcon = search;
   paintBucket = paintBucket;
   links = computed(() => navlinkData)
   icon = computed(() => this.darkModeService.isDark() ? sun : moon)
