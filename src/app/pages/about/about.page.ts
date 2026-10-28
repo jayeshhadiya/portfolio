@@ -91,8 +91,8 @@ export class AboutPage{
     },
     {
       title: 'Mobile Number',
-      desc: '+91 9876543210',
-      link: 'tel:+919876543210'
+      desc: '+91 9726208424',
+      link: 'tel:+919726208424'
     },
     {
       title: 'Email',

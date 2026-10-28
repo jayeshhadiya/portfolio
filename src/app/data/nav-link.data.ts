@@ -13,7 +13,7 @@ const navlinkData: NavLinkSchema[] = [
     path: '/experience',
   },
   {
-    name: 'Blog',
+    name: 'Blogs',
     path: '/blog',
   },
   {

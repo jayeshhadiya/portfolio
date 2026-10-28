@@ -5,6 +5,7 @@ const experienceData: ExperienceSchema[] = [
   {
     role: 'DevOps Engineer',
     company: 'Upvision Software',
+    companyUrl: 'https://www.upvision.in/',
     employmentType: 'Full-time',
     start: 'Sep 2023',
     summary: 'Building and running the CI/CD pipelines, containers and cloud infrastructure that the engineering team ships on.',
