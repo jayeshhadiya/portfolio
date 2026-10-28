@@ -20,9 +20,11 @@ import { DateAgoPipe } from '@core/pipe/date-ago.pipe';
     >
     <div
       class="flex flex-row gap-3.5 p-3 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border dark:border-gray-100/20">
+      @if(data.image){
       <img
         class="object-cover object-center rounded-1 w-auto h-full max-w-full max-h-24 border border-divider transition scale-100 group-hover:scale-105"
-        alt="test" [src]="data.image" />
+        [alt]="data.headTitle + ' poster'" [src]="data.image" />
+      }
       <div class="flex flex-col flex-1 gap-1.5 text-sm truncate mix-blend-hard-light justify-center">
         <div class="flex gap-3">
           <p class="flex items-center gap-1 font-semibold tracking-wider uppercase dark:text-gray-300 text-gray-600">

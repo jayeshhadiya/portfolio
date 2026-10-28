@@ -1,11 +1,12 @@
-import { Injectable, effect, inject, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
-import { Observable, map, of, switchMap, tap } from 'rxjs';
+import { EMPTY, Observable, catchError, map, of, switchMap, tap } from 'rxjs';
 import { Scrobble } from '@data/schema/trakt-tv/scrobble'
 import { History } from '@data/schema/trakt-tv/history'
 import { WatchItem } from '@data/schema/trakt-tv/watch-item'
 import { Image } from '@data/schema/tmdb/image'
 import { environment } from '@env/environment';
+import { PlatformCheckService } from '@core/services/platform-check.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +21,16 @@ export class TraktTvService {
   recentlyWatchedEndpoint = `${this.trackTv.apiURL}sync/history`;
   enabled = !!(this.trackTv.clientId && this.trackTv.username && this.trackTv.token && this.themoviedb.token);
   constructor() {
-    effect(() => {
+    // Browser only, so SSR and prerendering don't call the APIs.
+    if (inject(PlatformCheckService).onBrowser) {
       this.getResult();
-    })
+    }
   }
 
   movieData(data: History[] | Scrobble): WatchItem {
     const isArray = Array.isArray(data);
     const res = isArray ? data[0] : data;
+    if (!res) throw new Error('Nothing watched yet');
     const watchedAt = isArray ? data[0].watched_at : null
     if ('type' in res) {
       const isMovie = res.type === 'movie';
@@ -84,14 +87,19 @@ export class TraktTvService {
         'accept': `application/json`,
         'Authorization': `Bearer ${this.themoviedb.token}`
       });
-      let params = new HttpParams()
-        .set('include_image_language', this.themoviedb.language)
-        .set('end_at', this.themoviedb.language);
+      const params = new HttpParams()
+        .set('include_image_language', this.themoviedb.language);
       const type = res.type == 'movie' ? 'movie' : 'tv';
       const url = `${this.themoviedb.apiURL}${type}/${res.tmdb}/images`;
-      return this.http.get<Image>(url, { params, headers }).pipe(tap(image => this.watch.set(
-        { ...res, image: `https://image.tmdb.org/t/p/original/${image.posters[0].file_path}` }
-      )))
-    })).subscribe()
+      return this.http.get<Image>(url, { params, headers }).pipe(
+        map(image => image.posters?.[0]?.file_path),
+        // Still show the title when the poster lookup fails.
+        catchError(() => of(undefined)),
+        tap(poster => this.watch.set(
+          { ...res, image: poster ? `https://image.tmdb.org/t/p/original/${poster}` : undefined }
+        )))
+    }),
+    // Trakt failed or nothing has been watched: leave the widget hidden.
+    catchError(() => EMPTY)).subscribe()
   }
 }

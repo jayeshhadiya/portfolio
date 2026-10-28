@@ -8,7 +8,7 @@ import {
   inject,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop'
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { DatePipe, DOCUMENT } from '@angular/common';
 import { BlogService } from '../blog.service';
 import { PlatformCheckService } from '@core/services/platform-check.service';
@@ -98,6 +98,7 @@ export class BlogDetailPage{
   blogService = inject(BlogService);
   platformCheck = inject(PlatformCheckService);
   metaService = inject(MetaService);
+  router = inject(Router);
   paramMap = toSignal(inject(ActivatedRoute).paramMap);
   // The blog list is sorted newest first, so the next item is the older post.
   private position = computed(() => this.blogService.blogs().findIndex(post => post.slug === this.data()?.slug));
@@ -105,9 +106,13 @@ export class BlogDetailPage{
   nextPost = computed(() => this.position() < 1 ? undefined : this.blogService.blogs()[this.position() - 1]);
   constructor() {
     effect((onCleanup) => {
-      this.sub = this.blogService.get(this.paramMap()?.get('slug')).subscribe(data => {
-        this.data.set(data)
-        this.metaService.setMetaTags( data.title, data.summary, data.keywords, data.smallImage )
+      this.sub = this.blogService.get(this.paramMap()?.get('slug')).subscribe({
+        next: data => {
+          this.data.set(data)
+          this.metaService.setMetaTags( data.title, data.summary, data.keywords, data.smallImage )
+        },
+        // Unknown slug: show the error page but keep the address the visitor typed.
+        error: () => this.router.navigateByUrl('/404', { skipLocationChange: true })
       });
 
       onCleanup(() => {

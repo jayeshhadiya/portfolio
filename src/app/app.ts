@@ -1,10 +1,10 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewEncapsulation, effect, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, PLATFORM_ID, Renderer2, ViewEncapsulation, effect, inject } from '@angular/core';
 import { Navbar } from '@layout/navbar/navbar';
 import { ScrollToTop } from '@shared/components/scroll-to-top/scroll-to-top';
 import { RouterOutlet } from '@angular/router';
 import { Footer } from '@layout/footer/footer';
 import { ThemeService } from '@core/services/theme.service';
-import { DOCUMENT, NgClass } from '@angular/common';
+import { DOCUMENT, NgClass, isPlatformBrowser } from '@angular/common';
 import { environment } from '@env/environment';
 @Component({
   selector: 'app',
@@ -25,6 +25,7 @@ export class App implements OnInit {
   theme = inject(ThemeService)
   renderer = inject(Renderer2)
   document: Document = inject(DOCUMENT);
+  platformId = inject(PLATFORM_ID);
 
   constructor(){
     effect(() => {
@@ -35,7 +36,8 @@ export class App implements OnInit {
     this.elementRef.nativeElement.removeAttribute("ng-version");
     this.elementRef.nativeElement.removeAttribute("ng-server-context");
 
-    if(environment.production && environment.umamiWebsiteId){
+    // Browser only: otherwise prerendered pages already contain the tag and it loads twice.
+    if(environment.production && environment.umamiWebsiteId && isPlatformBrowser(this.platformId)){
       const script = this.renderer.createElement('script');
       script.defer = true;
       script.src = 'https://cloud.umami.is/script.js';
