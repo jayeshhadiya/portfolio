@@ -4,6 +4,10 @@
 /blog
 /quotes
 /uses
+/current-affairs
+/current-affairs/2026-10-28
+/current-affairs/2026-10-27
+/current-affairs/2026-10-26
 /blog/terraform-remote-state-on-aws-s3
 /blog/deploy-to-kubernetes-with-github-actions
 /blog/how-to-fix-crashloopbackoff-in-kubernetes

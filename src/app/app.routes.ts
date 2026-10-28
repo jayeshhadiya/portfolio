@@ -25,6 +25,11 @@ export const routes: Routes = [
     loadChildren: () => import('@pages/quotes/quotes.routes').then(m => m.QuotesRoutes)
   },
   {
+    // Not in the navbar; reachable by its address only.
+    path: 'current-affairs',
+    loadChildren: () => import('@pages/current-affairs/current-affairs.routes').then(m => m.CurrentAffairsRoutes)
+  },
+  {
     path: 'uses',
     loadChildren: () => import('@pages/use/use.routes').then(m => m.UseRoutes)
   },

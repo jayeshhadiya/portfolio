@@ -1,6 +1,7 @@
 // Builds robots.txt, sitemap.xml and rss.xml (into src/generated/) and the
 // prerender routes list (routesFile.txt) from the site URL, nav links and blog posts.
 // /404 is prerendered too and copied to 404.html after the build (see package.json).
+// Hidden pages (not in the navbar or sitemap) are prerendered as well.
 // Runs automatically before `npm start`, `npm run build` and the SSR/prerender scripts.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -14,6 +15,9 @@ const envFile = ['src/environments/environment.ts', 'src/environments/environmen
   .find((path) => existsSync(join(root, path)));
 const siteUrl = read(envFile).match(/url:\s*'([^']+)'/)[1].replace(/\/$/, '');
 
+// Hidden pages: the current affairs landing page and one page per day.
+const quizDates = [...read('src/app/data/current-affairs.data.ts').matchAll(/date:\s*'(\d{4}-\d{2}-\d{2})'/g)].map((m) => m[1]);
+const hiddenPaths = ['/current-affairs', ...quizDates.map((date) => `/current-affairs/${date}`)];
 const navPaths = [...read('src/app/data/nav-link.data.ts').matchAll(/path:\s*'([^']+)'/g)].map((m) => m[1]);
 const profileName = read('src/app/data/profile.data.ts').match(/name:\s*'([^']+)'/)[1];
 const posts = JSON.parse(read('src/assets/json/blogs.json')).data
@@ -62,6 +66,6 @@ mkdirSync(join(root, 'src/generated'), { recursive: true });
 writeFileSync(join(root, 'src/generated/sitemap.xml'), sitemap);
 writeFileSync(join(root, 'src/generated/rss.xml'), rss);
 writeFileSync(join(root, 'src/generated/robots.txt'), robots);
-writeFileSync(join(root, 'routesFile.txt'), [...navPaths, ...blogPaths, '/404'].join('\n') + '\n');
+writeFileSync(join(root, 'routesFile.txt'), [...navPaths, ...hiddenPaths, ...blogPaths, '/404'].join('\n') + '\n');
 
 console.log(`SEO files generated for ${siteUrl} (${navPaths.length} pages, ${posts.length} posts)`);

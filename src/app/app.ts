@@ -4,7 +4,7 @@ import { ScrollToTop } from '@shared/components/scroll-to-top/scroll-to-top';
 import { RouterOutlet } from '@angular/router';
 import { Footer } from '@layout/footer/footer';
 import { ThemeService } from '@core/services/theme.service';
-import { DOCUMENT, NgClass, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, NgClass, ViewportScroller, isPlatformBrowser } from '@angular/common';
 import { environment } from '@env/environment';
 @Component({
   selector: 'app',
@@ -28,6 +28,8 @@ export class App implements OnInit {
   platformId = inject(PLATFORM_ID);
 
   constructor(){
+    // Links to #anchors stop below the fixed navbar instead of behind it.
+    inject(ViewportScroller).setOffset(() => [0, (this.document.querySelector('nav')?.offsetHeight ?? 0) + 16]);
     effect(() => {
       this.elementRef.nativeElement.style.setProperty(`--primary-color`, this.theme.getColor())
       // The early color from index.html is no longer needed (and would override later changes).

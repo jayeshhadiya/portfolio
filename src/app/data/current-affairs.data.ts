@@ -1,0 +1,235 @@
+import { CurrentAffairsDay } from '@data/schema/current-affairs.schema';
+
+// Add each new day here with 10 questions. Each day gets its own page at /current-affairs/YYYY-MM-DD,
+// and the newest date is shown first on /current-affairs. `answer` is the index of the correct option (0 = first).
+const currentAffairsData: CurrentAffairsDay[] = [
+  {
+    date: '2026-10-28',
+    questions: [
+      {
+        category: 'National',
+        question: 'What is the theme of Vigilance Awareness Week 2026?',
+        options: ['Integrity Begins with Us', 'Probity for Prosperity', 'Transparency for Development', 'Corruption-Free India'],
+        answer: 1,
+        explanation: 'The Central Vigilance Commission observes Vigilance Awareness Week every year in the week of 31 October, Sardar Vallabhbhai Patel\'s birth anniversary.',
+      },
+      {
+        category: 'Environment',
+        question: 'Which country proposed the name "Arnab" for the cyclone that formed over the Bay of Bengal in October 2026?',
+        options: ['India', 'Bangladesh', 'Sri Lanka', 'Thailand'],
+        answer: 1,
+        explanation: 'Cyclone names for the north Indian Ocean come from a list contributed by the WMO/ESCAP panel member countries. Uttar Pradesh issued a rain alert for Cyclone Arnab for 28–31 October.',
+      },
+      {
+        category: 'Defence',
+        question: 'On 26 October 2026, the Defence Acquisition Council approved capital acquisition proposals worth about how much?',
+        options: ['₹1.25 lakh crore', '₹1.75 lakh crore', '₹2.12 lakh crore', '₹3.50 lakh crore'],
+        answer: 2,
+        explanation: 'The DAC, chaired by the Defence Minister, approved proposals worth about ₹2.12 lakh crore for the armed forces.',
+      },
+      {
+        category: 'Defence',
+        question: 'The 13th ASEAN Defence Ministers\' Meeting-Plus (ADMM-Plus), attended by India\'s Defence Minister, is being held in which city?',
+        options: ['Bangkok', 'Cebu', 'Jakarta', 'Hanoi'],
+        answer: 1,
+        explanation: 'ADMM-Plus brings together the 10 ASEAN members and 8 dialogue partners, including India.',
+      },
+      {
+        category: 'Defence',
+        question: 'SIMBEX, whose 33rd edition is in the news, is a naval exercise between India and which country?',
+        options: ['Sri Lanka', 'Singapore', 'Indonesia', 'Malaysia'],
+        answer: 1,
+        explanation: 'SIMBEX (Singapore–India Maritime Bilateral Exercise) is one of the Indian Navy\'s longest-running bilateral exercises.',
+      },
+      {
+        category: 'Schemes',
+        question: 'According to reports on 28 October 2026, the National Social Assistance Programme (NSAP) has been extended and renamed as which scheme?',
+        options: ['PM Samajik Sahayata Yojana', 'PM Jan Dhan Yojana', 'PM Garib Kalyan Yojana', 'Atal Pension Yojana'],
+        answer: 0,
+        explanation: 'NSAP provides pensions and support to elderly people, widows and persons with disabilities from poor households.',
+      },
+      {
+        category: 'Economy',
+        question: 'The RBI is encouraging states to use which of these for programmable Direct Benefit Transfers (DBT)?',
+        options: ['UPI Lite', 'Digital rupee (CBDC)', 'RuPay credit cards', 'Aadhaar Pay'],
+        answer: 1,
+        explanation: 'A programmable digital rupee can make sure a benefit is spent only for its intended purpose.',
+      },
+      {
+        category: 'Science & Tech',
+        question: 'According to an October 2026 announcement, ISRO aims to have how many functional launch pads by 2029?',
+        options: ['Two', 'Three', 'Four', 'Six'],
+        answer: 2,
+        explanation: 'New pads include the third launch pad at Sriharikota and the Kulasekarapattinam spaceport in Tamil Nadu for small rockets.',
+      },
+      {
+        category: 'Energy',
+        question: 'Under India\'s updated flex-fuel vehicle rules, what does "E100" refer to?',
+        options: ['100% electric vehicles', 'Fuel made predominantly of ethanol', 'Euro-100 emission norm', 'A 100 km/litre efficiency standard'],
+        answer: 1,
+        explanation: 'The "E" number shows the ethanol share in the fuel blend, for example E20 is 20% ethanol.',
+      },
+      {
+        category: 'Science & Tech',
+        question: 'What is the main objective of the Emerging Science, Technology and Innovation Conclave (ESTIC) 2026?',
+        options: ['Selecting astronauts for Gaganyaan', 'Promoting research and turning innovation into practical applications', 'Regulating AI start-ups', 'Hosting the national science olympiad'],
+        answer: 1,
+        explanation: 'ESTIC brings together government, academia and industry to connect research with real-world use.',
+      },
+    ],
+    sources: [
+      { name: 'Target Defence Academy, 28 Oct 2026', url: 'https://www.thetargetclasses.com/gk/current-affairs-28-october-2026/' },
+      { name: 'Practicemock, 28 Oct 2026', url: 'https://www.practicemock.com/blog/current-affairs-free-quiz-for-october-28-2026/' },
+    ],
+  },
+  {
+    date: '2026-10-27',
+    questions: [
+      {
+        category: 'Defence',
+        question: 'Who released India\'s updated Land Warfare Doctrine in October 2026?',
+        options: ['Amit Shah', 'Rajnath Singh', 'Narendra Modi', 'General Dhiraj Seth'],
+        answer: 1,
+      },
+      {
+        category: 'Defence',
+        question: 'National Infantry Day, observed on 27 October, marks the arrival of the Indian Army\'s first infantry battalion in which city in 1947?',
+        options: ['Jammu', 'Srinagar', 'Leh', 'Poonch'],
+        answer: 1,
+        explanation: 'On 27 October 1947, troops of 1 Sikh were airlifted to Srinagar to defend Kashmir after the state acceded to India.',
+      },
+      {
+        category: 'Economy',
+        question: 'In which city did the RBI inaugurate a new data centre and cybersecurity training institute in October 2026?',
+        options: ['Mumbai', 'Hyderabad', 'Bhubaneswar', 'Ahmedabad'],
+        answer: 2,
+        explanation: 'It was inaugurated by the Prime Minister during his visit to Odisha on 25 October 2026.',
+      },
+      {
+        category: 'Environment',
+        question: 'What is the main purpose of the Atmospheric Chemistry and Aerosol Toxicity Analysis Laboratory (AATAL)?',
+        options: ['Studying deep-sea organisms', 'Analysing atmospheric pollution and aerosol toxicity', 'Developing satellite navigation systems', 'Testing nuclear reactor materials'],
+        answer: 1,
+      },
+      {
+        category: 'International',
+        question: 'Which date was announced as Poland–India Partnership Day during Polish PM Donald Tusk\'s visit in October 2026?',
+        options: ['26 January', '30 March', '15 August', '11 November'],
+        answer: 1,
+      },
+      {
+        category: 'International',
+        question: 'Which country is hosting the BRICS Summit in 2026?',
+        options: ['Brazil', 'Russia', 'India', 'South Africa'],
+        answer: 2,
+        explanation: 'India holds the BRICS chairship in 2026. The 12th BRICS Parliamentary Forum was also held in New Delhi.',
+      },
+      {
+        category: 'Schemes',
+        question: 'Which institution gave technical support for the upgraded National Mobile Monitoring System (NMMS) 2.0 app?',
+        options: ['IIT Bombay', 'IIT Madras', 'IISc Bengaluru', 'C-DAC Pune'],
+        answer: 1,
+        explanation: 'NMMS is used to record attendance of workers at MGNREGA worksites.',
+      },
+      {
+        category: 'Economy',
+        question: 'What is the theme of India Chem 2026, held in Mumbai?',
+        options: ['Make in India for Chemicals', 'Advantage Bharat: An Emerging Global Chemicals Hub', 'Green Chemistry for Viksit Bharat', 'Chemicals for a Sustainable Future'],
+        answer: 1,
+      },
+      {
+        category: 'Science & Tech',
+        question: 'Where is the Emerging Science, Technology and Innovation Conclave (ESTIC) 2026 being held from 27 to 29 October?',
+        options: ['Vigyan Bhawan, New Delhi', 'Bharat Mandapam, New Delhi', 'Yashobhoomi, New Delhi', 'Mahatma Mandir, Gandhinagar'],
+        answer: 1,
+        explanation: 'The Prime Minister inaugurated ESTIC 2026.',
+      },
+      {
+        category: 'Defence',
+        question: 'Swavlamban 2026, the Indian Navy\'s fifth innovation and indigenisation seminar, was held at which venue?',
+        options: ['Manekshaw Centre, New Delhi', 'INS Hansa, Goa', 'Naval Dockyard, Mumbai', 'Bharat Mandapam, New Delhi'],
+        answer: 0,
+      },
+    ],
+    sources: [
+      { name: 'Target Defence Academy, 27 Oct 2026', url: 'https://www.thetargetclasses.com/gk/current-affairs-27-october-2026/' },
+      { name: 'Topprs notes, 27 Oct 2026', url: 'https://www.topprs.in/2026/10/daily-current-affairs-notes-27-october.html' },
+    ],
+  },
+  {
+    date: '2026-10-26',
+    questions: [
+      {
+        category: 'Culture',
+        question: 'After three sites were added in October 2026, how many sites does India have on the UNESCO World Heritage Tentative List?',
+        options: ['75', '78', '81', '85'],
+        answer: 2,
+        explanation: 'The Tentative List is the inventory of sites a country plans to nominate for World Heritage status.',
+      },
+      {
+        category: 'Sports',
+        question: 'How many medals did India win at the 5th Asian Para Games 2026 in Aichi-Nagoya, Japan?',
+        options: ['108', '110', '114', '120'],
+        answer: 2,
+        explanation: 'It was India\'s best-ever medal tally at the Asian Para Games.',
+      },
+      {
+        category: 'Defence',
+        question: 'AUSTRAHIND 2026 is a joint military exercise between India and which country?',
+        options: ['Japan', 'Australia', 'France', 'Singapore'],
+        answer: 1,
+      },
+      {
+        category: 'Defence',
+        question: 'In which Indian city was the 33rd edition of the India–Singapore naval exercise SIMBEX held in October 2026?',
+        options: ['Kochi', 'Mumbai', 'Visakhapatnam', 'Chennai'],
+        answer: 2,
+        explanation: 'Visakhapatnam is the headquarters of the Indian Navy\'s Eastern Naval Command.',
+      },
+      {
+        category: 'Agriculture',
+        question: 'Which became India\'s first fully organic Union Territory?',
+        options: ['Andaman and Nicobar Islands', 'Ladakh', 'Lakshadweep', 'Puducherry'],
+        answer: 1,
+      },
+      {
+        category: 'States',
+        question: 'Which state unveiled "Thuli" as its mascot for rainwater harvesting awareness?',
+        options: ['Kerala', 'Karnataka', 'Tamil Nadu', 'Andhra Pradesh'],
+        answer: 2,
+      },
+      {
+        category: 'National',
+        question: 'Which agency launched "Operation Trident" against transnational narco-financial syndicates in Assam, Mizoram and Manipur?',
+        options: ['Enforcement Directorate (ED)', 'Narcotics Control Bureau (NCB)', 'National Investigation Agency (NIA)', 'Assam Rifles'],
+        answer: 1,
+      },
+      {
+        category: 'Defence',
+        question: 'The Improved Low Level Light Weight Radar (LLLR-I) procured by the Ministry of Defence is made by which company?',
+        options: ['Hindustan Aeronautics Limited (HAL)', 'Bharat Electronics Limited (BEL)', 'Bharat Dynamics Limited (BDL)', 'Larsen & Toubro'],
+        answer: 1,
+      },
+      {
+        category: 'Agriculture',
+        question: 'The Mission for Aatmanirbharta in Pulses mainly focuses on which pulses?',
+        options: ['Chana, moong and rajma', 'Tur, urad and masoor', 'Moong, lobia and matar', 'Chana, masoor and kulthi'],
+        answer: 1,
+        explanation: 'India still imports a large share of these pulses, so the mission aims to raise domestic production.',
+      },
+      {
+        category: 'Awards',
+        question: 'Which Indian theoretical physicist received the Oskar Klein Medal in 2026?',
+        options: ['Ashoke Sen', 'Shiraz Minwalla', 'Spenta Wadia', 'Thanu Padmanabhan'],
+        answer: 0,
+        explanation: 'Ashoke Sen, of the Harish-Chandra Research Institute, is known for his work in string theory.',
+      },
+    ],
+    sources: [
+      { name: 'Target Defence Academy, 26 Oct 2026', url: 'https://www.thetargetclasses.com/gk/current-affairs-26-october-2026/' },
+      { name: 'GS Times, 26 Oct 2026', url: 'https://www.gstimes.in/current-affairs-quiz-for-all-exams-26-october-2026/' },
+    ],
+  },
+];
+
+export default currentAffairsData;

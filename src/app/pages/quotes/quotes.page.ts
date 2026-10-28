@@ -71,7 +71,7 @@ type Tab = 'All' | QuoteCategory;
     <div class="my-12 rounded-xl border border-gray-200 dark:border-gray-800 p-6 text-center">
       <p class="font-serif text-xl font-semibold text-gray-900 dark:text-white">Got a quote I should read?</p>
       <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Send me the line that changed how you work.</p>
-      <a routerLink="/about" class="mt-4 inline-block rounded-lg bg-primary-500 px-5 py-2 text-sm font-medium text-white hover:bg-primary-600">Send a message</a>
+      <a routerLink="/about" fragment="contact" class="mt-4 inline-block rounded-lg bg-primary-500 px-5 py-2 text-sm font-medium text-white hover:bg-primary-600">Send a message</a>
     </div>
   </div>
   `

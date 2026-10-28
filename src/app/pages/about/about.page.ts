@@ -36,7 +36,7 @@ import { ContactForm } from '@shared/components/contact-form/contact-form'
   }
 </div>
 
-<div class="flex flex-col gap-5">
+<div id="contact" class="flex flex-col gap-5">
   <h1 class="text-2xl font-semibold dark:text-white">Send me a message:</h1>
   <contact-form/>
 </div>
